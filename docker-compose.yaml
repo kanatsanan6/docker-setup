@@ -11,6 +11,17 @@ services:
     ports:
       - 5432:5432
 
+  mongodb-cigna:
+    image: mongo:3.6
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=kanatsanan.j
+      - MONGO_INITDB_ROOT_PASSWORD=test1234
+    volumes:
+      - /data/db
+    command: [--auth]
+    ports:
+      - 27018:27017
+
   mongodb:
    image: mongo:3.6
    volumes:
