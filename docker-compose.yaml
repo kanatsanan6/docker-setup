@@ -10,6 +10,7 @@ services:
       - pgvol:/var/lib/postgresql/data/
     ports:
       - 5432:5432
+    restart: always
 
   mongodb-cigna:
     image: mongo:3.6
@@ -21,14 +22,16 @@ services:
     command: [--auth]
     ports:
       - 27018:27017
+    restart: always
 
   mongodb:
-   image: mongo:3.6
-   volumes:
-     - /data/db
-   command: --smallfiles
-   ports:
-     - 27017:27017
+    image: mongo:3.6
+    volumes:
+      - /data/db
+    command: --smallfiles
+    ports:
+      - 27017:27017
+    restart: always
 
   minio:
     image: minio/minio
@@ -41,11 +44,13 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
     command: server --console-address ":9001" /data
+    restart: always
 
   redis:
-    image: redis:5.0
+    image: redis:7
     ports:
       - 6379:6379
+    restart: always
 
 volumes:
   pgvol:
